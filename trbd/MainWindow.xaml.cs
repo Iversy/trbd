@@ -19,6 +19,8 @@ namespace trbd
         public MainWindow()
         {
             InitializeComponent();
+
+            phonesGrid.ItemsSource = new PhoneList().read();
         }
     }
 }
