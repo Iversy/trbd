@@ -17,26 +17,16 @@ namespace trbd
     /// </summary>
     public partial class MainWindow : Window
     {
-        public StupidDataSet stupid_data;
+        App app = (App)Application.Current;
         public MainWindow()
         {
             InitializeComponent();
-
-            stupid_data = new StupidDataSet();
-            try
-            {
-                stupid_data.ReadXml("./stupid_data.xml");
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show("Я не могу прочитать дазу банных, фала нет.", "Нет файла");
-            }
-            phonesGrid.ItemsSource = stupid_data.Tables["Material"].DefaultView;
+            phonesGrid.ItemsSource = app.stupid_data.Tables["Material"].DefaultView;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            stupid_data.WriteXml("./stupid_data.xml");
+            app.stupid_data.WriteXml("./stupid_data.xml");
         }
     }
 }

@@ -12,9 +12,24 @@ namespace trbd
     /// </summary>
     public partial class App : Application
     {
+        public DataSet stupid_data;
+
         App()
         {
-            this.serialize();
+            load_data();
+        }
+
+        private void load_data()
+        {
+            stupid_data = new DataSet();
+            try
+            {
+                stupid_data.ReadXml("./stupid_data.xml");
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Я не могу прочитать дазу банных, фала нет.", "Нет файла");
+            }
         }
 
         public void serialize()
@@ -34,24 +49,4 @@ namespace trbd
             }
         }
     }
-    public class Phone
-    {
-        public string Title { get; set; }
-        public string Company { get; set; }
-        public int Price { get; set; }
-    }
-
-    public class PhoneList
-    {
-        public List<Phone> read()
-        {
-            return new List<Phone>
-            {
-                new Phone { Title="iPhone 6S", Company="Apple", Price=54990 },
-                new Phone {Title="Lumia 950", Company="Microsoft", Price=39990 },
-                new Phone {Title="Nexus 5X", Company="Google", Price=29990 }
-            };
-        }
-    }
-
 }
