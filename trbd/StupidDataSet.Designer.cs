@@ -428,7 +428,7 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MaterialRow AddMaterialRow(string ID, string Name, string Units, string Price) {
+            public MaterialRow AddMaterialRow(string ID, string Name, string Units, decimal Price) {
                 MaterialRow rowMaterialRow = ((MaterialRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -479,7 +479,7 @@ namespace trbd {
                 base.Columns.Add(this.columnName);
                 this.columnUnits = new global::System.Data.DataColumn("Units", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUnits);
-                this.columnPrice = new global::System.Data.DataColumn("Price", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnPrice = new global::System.Data.DataColumn("Price", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrice);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("MaterialKey", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
@@ -730,7 +730,7 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public UsageRow AddUsageRow(string ID, string Material_ID, string Count, string Date) {
+            public UsageRow AddUsageRow(string ID, string Material_ID, int Count, System.DateTime Date) {
                 UsageRow rowUsageRow = ((UsageRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -779,9 +779,9 @@ namespace trbd {
                 base.Columns.Add(this.columnID);
                 this.columnMaterial_ID = new global::System.Data.DataColumn("Material_ID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaterial_ID);
-                this.columnCount = new global::System.Data.DataColumn("Count", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnCount = new global::System.Data.DataColumn("Count", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCount);
-                this.columnDate = new global::System.Data.DataColumn("Date", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("UsageKey", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
@@ -972,10 +972,10 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Price {
+            public decimal Price {
                 get {
                     try {
-                        return ((string)(this[this.tableMaterial.PriceColumn]));
+                        return ((decimal)(this[this.tableMaterial.PriceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Price\' in table \'Material\' is DBNull.", e);
@@ -1066,10 +1066,10 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Count {
+            public int Count {
                 get {
                     try {
-                        return ((string)(this[this.tableUsage.CountColumn]));
+                        return ((int)(this[this.tableUsage.CountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Count\' in table \'Usage\' is DBNull.", e);
@@ -1082,10 +1082,10 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Date {
+            public System.DateTime Date {
                 get {
                     try {
-                        return ((string)(this[this.tableUsage.DateColumn]));
+                        return ((global::System.DateTime)(this[this.tableUsage.DateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Date\' in table \'Usage\' is DBNull.", e);
