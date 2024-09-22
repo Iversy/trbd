@@ -20,6 +20,7 @@ namespace trbd
 
         public void load_data()
         {
+            stupid_data.Clear();
             try
             {
                 stupid_data.ReadXml("./stupid_data.xml");
