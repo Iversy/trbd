@@ -21,7 +21,8 @@ namespace trbd
         public MainWindow()
         {
             InitializeComponent();
-            phonesGrid.ItemsSource = app.stupid_data.Tables["Material"].DefaultView;
+            MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"].DefaultView;
+            UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"].DefaultView;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

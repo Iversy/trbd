@@ -28,6 +28,8 @@ namespace trbd {
         
         private UsageDataTable tableUsage;
         
+        private global::System.Data.DataRelation relationUsage_Material;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -220,6 +222,7 @@ namespace trbd {
                     this.tableUsage.InitVars();
                 }
             }
+            this.relationUsage_Material = this.Relations["Usage_Material"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -234,6 +237,10 @@ namespace trbd {
             base.Tables.Add(this.tableMaterial);
             this.tableUsage = new UsageDataTable();
             base.Tables.Add(this.tableUsage);
+            this.relationUsage_Material = new global::System.Data.DataRelation("Usage_Material", new global::System.Data.DataColumn[] {
+                        this.tableUsage.Material_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMaterial.IDColumn}, false);
+            this.Relations.Add(this.relationUsage_Material);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -428,10 +435,10 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MaterialRow AddMaterialRow(string ID, string Name, string Units, decimal Price) {
+            public MaterialRow AddMaterialRow(string Name, string Units, decimal Price) {
                 MaterialRow rowMaterialRow = ((MaterialRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID,
+                        null,
                         Name,
                         Units,
                         Price};
@@ -442,7 +449,7 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MaterialRow FindByID(string ID) {
+            public MaterialRow FindByID(int ID) {
                 return ((MaterialRow)(this.Rows.Find(new object[] {
                             ID})));
             }
@@ -473,7 +480,7 @@ namespace trbd {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
@@ -483,6 +490,7 @@ namespace trbd {
                 base.Columns.Add(this.columnPrice);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("MaterialKey", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
+                this.columnID.AutoIncrement = true;
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
             }
@@ -730,10 +738,10 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public UsageRow AddUsageRow(string ID, string Material_ID, int Count, System.DateTime Date) {
+            public UsageRow AddUsageRow(int Material_ID, int Count, System.DateTime Date) {
                 UsageRow rowUsageRow = ((UsageRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID,
+                        null,
                         Material_ID,
                         Count,
                         Date};
@@ -744,7 +752,7 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public UsageRow FindByID(string ID) {
+            public UsageRow FindByID(int ID) {
                 return ((UsageRow)(this.Rows.Find(new object[] {
                             ID})));
             }
@@ -775,9 +783,9 @@ namespace trbd {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
-                this.columnMaterial_ID = new global::System.Data.DataColumn("Material_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnMaterial_ID = new global::System.Data.DataColumn("Material_ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaterial_ID);
                 this.columnCount = new global::System.Data.DataColumn("Count", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCount);
@@ -785,6 +793,7 @@ namespace trbd {
                 base.Columns.Add(this.columnDate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("UsageKey", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
+                this.columnID.AutoIncrement = true;
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
             }
@@ -929,9 +938,9 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ID {
+            public int ID {
                 get {
-                    return ((string)(this[this.tableMaterial.IDColumn]));
+                    return ((int)(this[this.tableMaterial.IDColumn]));
                 }
                 set {
                     this[this.tableMaterial.IDColumn] = value;
@@ -988,6 +997,17 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public UsageRow UsageRow {
+                get {
+                    return ((UsageRow)(this.GetParentRow(this.Table.ParentRelations["Usage_Material"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Usage_Material"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsNameNull() {
                 return this.IsNull(this.tableMaterial.NameColumn);
             }
@@ -1039,9 +1059,9 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ID {
+            public int ID {
                 get {
-                    return ((string)(this[this.tableUsage.IDColumn]));
+                    return ((int)(this[this.tableUsage.IDColumn]));
                 }
                 set {
                     this[this.tableUsage.IDColumn] = value;
@@ -1050,10 +1070,10 @@ namespace trbd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Material_ID {
+            public int Material_ID {
                 get {
                     try {
-                        return ((string)(this[this.tableUsage.Material_IDColumn]));
+                        return ((int)(this[this.tableUsage.Material_IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Material_ID\' in table \'Usage\' is DBNull.", e);
@@ -1130,6 +1150,17 @@ namespace trbd {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetDateNull() {
                 this[this.tableUsage.DateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public MaterialRow[] GetMaterialRows() {
+                if ((this.Table.ChildRelations["Usage_Material"] == null)) {
+                    return new MaterialRow[0];
+                }
+                else {
+                    return ((MaterialRow[])(base.GetChildRows(this.Table.ChildRelations["Usage_Material"])));
+                }
             }
         }
         

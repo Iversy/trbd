@@ -11,8 +11,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
-        <DataGrid x:Name="phonesGrid" AutoGenerateColumns="True">
-        </DataGrid>
+        <DataGrid x:Name="MaterialGrid" Margin="0,0,456,100"></DataGrid>
+        <DataGrid x:Name="UsageGrid" Margin="349,0,0,100"></DataGrid>
         <Button Content="Save data" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
