@@ -24,14 +24,19 @@ namespace trbd
             {
                 stupid_data.ReadXml("./stupid_data.xml");
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException e)
             {
-                MessageBox.Show("Я не могу прочитать дазу банных, файла нет.", "Нет файла");
+                this.on_load_error("Нет файла", "Я не могу прочитать дазу банных, файла нет.", e);
             }
             catch (System.Data.ConstraintException e)
             {
-                MessageBox.Show("Я не могу прочитать дазу банных, файл битый."+e.Message, "Файл битый");
+                this.on_load_error("Файл битый", "Я не могу прочитать дазу банных, файл битый.", e);
             }
+        }
+
+        private void on_load_error(string title, string message, Exception exception)
+        {
+            MessageBox.Show(message + "\n" + exception.Message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
