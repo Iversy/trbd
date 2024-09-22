@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="yes"?>
+<StupidDataSet xmlns="http://tempuri.org/StupidDataSet.xsd">
+  <Material>
+    <ID>1</ID>
+    <Name>Oleg</Name>
+    <Units>Метры килов</Units>
+    <Price>-1</Price>
+  </Material>
+  <Material>
+    <ID>2</ID>
+    <Name>Pepeg</Name>
+    <Units>Кракозябры</Units>
+    <Price>10</Price>
+  </Material>
+  <Material>
+    <ID>3</ID>
+    <Name>Привет</Name>
+    <Units>Унции</Units>
+    <Price>999</Price>
+  </Material>
+  <Material>
+    <ID>4</ID>
+    <Name>Доски</Name>
+    <Units>Кубометры</Units>
+    <Price>10</Price>
+  </Material>
+  <Usage>
+    <ID>0</ID>
+    <Material_ID>3</Material_ID>
+    <Count>100</Count>
+    <Date>2003-01-20T00:00:00+05:00</Date>
+  </Usage>
+  <Usage>
+    <ID>1</ID>
+    <Material_ID>1</Material_ID>
+    <Count>-100</Count>
+    <Date>2003-02-28T00:00:00+05:00</Date>
+  </Usage>
+</StupidDataSet>
