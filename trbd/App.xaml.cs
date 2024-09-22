@@ -16,10 +16,9 @@ namespace trbd
 
         App()
         {
-            load_data();
         }
 
-        private void load_data()
+        public void load_data()
         {
             try
             {
@@ -29,10 +28,9 @@ namespace trbd
             {
                 MessageBox.Show("Я не могу прочитать дазу банных, файла нет.", "Нет файла");
             }
-            catch (System.Data.ConstraintException)
+            catch (System.Data.ConstraintException e)
             {
-                MessageBox.Show("Я не могу прочитать дазу банных, файл битый.", "Файл битый");
-                throw;
+                MessageBox.Show("Я не могу прочитать дазу банных, файл битый."+e.Message, "Файл битый");
             }
         }
     }

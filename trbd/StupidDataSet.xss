@@ -10,14 +10,14 @@
     <Shape ID="DesignTable:Usage" ZOrder="2" X="585" Y="216" Height="105" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="101" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:Usage_Material" ZOrder="1" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Material_Usage" ZOrder="1" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>585</X>
+          <X>429</X>
           <Y>268</Y>
         </Point>
         <Point>
-          <X>429</X>
+          <X>585</X>
           <Y>268</Y>
         </Point>
       </RoutePoints>

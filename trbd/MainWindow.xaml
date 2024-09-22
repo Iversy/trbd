@@ -13,7 +13,8 @@
 
         <DataGrid x:Name="MaterialGrid" Margin="0,0,456,100"></DataGrid>
         <DataGrid x:Name="UsageGrid" Margin="349,0,0,100"></DataGrid>
-        <Button Content="Save data" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Save data" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" Click="On_Save_Button_Click"/>
+        <Button Content="Load data" HorizontalAlignment="Left" Margin="445,363,0,0" VerticalAlignment="Top" Click="On_Load_Button_Click"/>
 
     </Grid>
 </Window>

@@ -25,9 +25,14 @@ namespace trbd
             UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"].DefaultView;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void On_Save_Button_Click(object sender, RoutedEventArgs e)
         {
             app.stupid_data.WriteXml("./stupid_data.xml");
+        }
+
+        private void On_Load_Button_Click(object sender, RoutedEventArgs e)
+        {
+            app.load_data();
         }
     }
 }
