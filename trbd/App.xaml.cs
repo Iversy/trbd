@@ -12,7 +12,7 @@ namespace trbd
     /// </summary>
     public partial class App : Application
     {
-        public DataSet stupid_data;
+        public StupidDataSet stupid_data = new StupidDataSet();
 
         App()
         {
@@ -21,31 +21,18 @@ namespace trbd
 
         private void load_data()
         {
-            stupid_data = new DataSet();
             try
             {
                 stupid_data.ReadXml("./stupid_data.xml");
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("Я не могу прочитать дазу банных, фала нет.", "Нет файла");
+                MessageBox.Show("Я не могу прочитать дазу банных, файла нет.", "Нет файла");
             }
-        }
-
-        public void serialize()
-        {
-            XmlSerializer xsSubmit = new XmlSerializer(typeof(StupidDataSet));
-            var oleg = new StupidDataSet();
-            var xml = "";
-
-            using (var sww = new StringWriter())
+            catch (System.Data.ConstraintException)
             {
-                using (XmlWriter writer = XmlWriter.Create(sww))
-                {
-                    xsSubmit.Serialize(writer, oleg);
-                    xml = sww.ToString(); // Your XML
-                    File.WriteAllText("./oleg.xml", xml);
-                }
+                MessageBox.Show("Я не могу прочитать дазу банных, файл битый.", "Файл битый");
+                throw;
             }
         }
     }
