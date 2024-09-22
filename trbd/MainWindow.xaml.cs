@@ -21,8 +21,6 @@ namespace trbd
         public MainWindow()
         {
             InitializeComponent();
-            MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"].DefaultView;
-            UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"].DefaultView;
         }
 
         private void On_Save_Button_Click(object sender, RoutedEventArgs e)
@@ -33,6 +31,8 @@ namespace trbd
         private void On_Load_Button_Click(object sender, RoutedEventArgs e)
         {
             app.load_data();
+            MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"].DefaultView;
+            UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"].DefaultView;
         }
     }
 }

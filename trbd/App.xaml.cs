@@ -12,7 +12,7 @@ namespace trbd
     /// </summary>
     public partial class App : Application
     {
-        public StupidDataSet stupid_data = new StupidDataSet();
+        public StupidDataSet stupid_data;
 
         App()
         {
@@ -20,7 +20,7 @@ namespace trbd
 
         public void load_data()
         {
-            stupid_data.Clear();
+            stupid_data = new StupidDataSet();
             try
             {
                 stupid_data.ReadXml("./stupid_data.xml");
