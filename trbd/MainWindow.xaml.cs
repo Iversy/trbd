@@ -41,21 +41,8 @@ namespace trbd
         {
             app.load_data();
 
-            MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"].DefaultView;
-            List<string> headers = ["Код", "Название", "Еденицы измерения", "Цена"];
-            for (int i = 0; i < headers.Count; i++)
-            {
-                MaterialGrid.Columns[i].Header = headers[i];
-            }
-            MaterialGrid.Columns[4].Visibility = Visibility.Collapsed;
-
-            UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"].DefaultView;
-            // у UsageGrid почему-то нет столбцов -_-
-            //List<string> headers2 = ["Код", "Код материала", "Количество", "Дата документа"];
-            //for (int i = 0; i < headers2.Count; i++)
-            //{
-            //    UsageGrid.Columns[i].Header = headers2[i];
-            //}
+            MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"]!.DefaultView;
+            UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"]!.DefaultView;
         }
     }
 }

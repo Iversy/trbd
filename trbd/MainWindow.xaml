@@ -15,12 +15,30 @@
         <TabControl x:Name="Nikita" Margin="0,10,0,55">
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="MaterialGrid"/>
+                    <ListView x:Name="MaterialGrid" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=ID}">Код</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Название</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Units}">Еденицы измерения</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена</GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="UsageGrid"/>
+                    <ListView x:Name="UsageGrid" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=ID}">Код</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Material_ID}">Код материала</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Count}">Количество</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Date}">Дата документа</GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
         </TabControl>
