@@ -35,7 +35,7 @@ namespace trbd
             }
         }
 
-        private void on_load_error(string title, string message, Exception exception)
+        public void on_load_error(string title, string message, Exception exception)
         {
             MessageBox.Show(message + "\n" + exception.Message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }

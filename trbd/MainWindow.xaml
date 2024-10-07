@@ -12,7 +12,7 @@
     <Grid>
         <Button Content="Save data" HorizontalAlignment="Right" Margin="0,0,5,5" VerticalAlignment="Bottom" Click="On_Save_Button_Click"/>
         <Button Content="Load data" HorizontalAlignment="Right" Margin="0,0,5,30" VerticalAlignment="Bottom" Click="On_Load_Button_Click"/>
-        <TabControl Margin="0,10,0,55">
+        <TabControl x:Name="Nikita" Margin="0,10,0,55">
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="MaterialGrid"/>
@@ -20,7 +20,7 @@
             </TabItem>
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="UsageGrid" Margin="0,4,0,0"/>
+                    <DataGrid x:Name="UsageGrid"/>
                 </Grid>
             </TabItem>
         </TabControl>
