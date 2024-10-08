@@ -105,5 +105,40 @@ namespace trbd
                 form.ShowDialog(table, n_row);
 
         }
+        private void On_Delete_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var tab = Nikita.SelectedIndex;
+            var table = app.stupid_data.Tables[tab];
+            int n_row = -1;
+            var grid = new ListView();
+            if (tab == 0)
+            {
+                grid = MaterialGrid;
+            }
+            else if (tab == 1)
+            {
+                grid = UsageGrid;
+
+            }
+            n_row = grid.SelectedIndex;
+            //List<string> cols = new List<string>();
+            //if (grid.View is GridView gridView)
+            //{
+            //    foreach (var col in gridView.Columns)
+            //    {
+            //        cols.Add(col.Header.ToString());
+            //    }
+            //}
+            if (n_row == -1 && table.Rows.Count != 0)
+            {
+                n_row= table.Rows.Count-1;
+            }
+            else
+            {
+                return;
+            }
+            table.Rows[n_row].Delete();
+
+        }
     }
 }
