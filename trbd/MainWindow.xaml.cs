@@ -44,5 +44,16 @@ namespace trbd
             MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"]!.DefaultView;
             UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"]!.DefaultView;
         }
+
+        private void On_New_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void On_Edit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var form = new EditForm();
+            var table = app.stupid_data.Tables[Nikita.SelectedIndex];
+            form.ShowDialog(table, table.Rows.Count-1);
+        }
     }
 }
