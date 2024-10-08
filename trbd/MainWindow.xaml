@@ -9,6 +9,9 @@
         
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:DateFormatConverter x:Key="DateFormatConverter"/>
+    </Window.Resources>
     <Grid>
         <Button Content="Save data" HorizontalAlignment="Right" Margin="0,0,5,5"   VerticalAlignment="Bottom" Click="On_Save_Button_Click" Height="20" Width="60"/>
         <Button Content="Load data" HorizontalAlignment="Right" Margin="0,0,5,30"  VerticalAlignment="Bottom" Click="On_Load_Button_Click" Height="20" Width="60"/>
@@ -20,7 +23,7 @@
                     <ListView x:Name="MaterialGrid" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=ID}">Код</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=ID }">Код</GridViewColumn>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Название</GridViewColumn>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Units}">Еденицы измерения</GridViewColumn>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена</GridViewColumn>
@@ -31,13 +34,17 @@
             </TabItem>
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="UsageGrid" >
+                    <ListView x:Name="UsageGrid">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=ID}">Код</GridViewColumn>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Material_ID}">Код материала</GridViewColumn>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Count}">Количество</GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Date}">Дата документа</GridViewColumn>
+                                <GridViewColumn Header="Дата документа">
+                                    <GridViewColumn.DisplayMemberBinding>
+                                        <Binding Path="Date" Converter="{StaticResource DateFormatConverter}"/>
+                                    </GridViewColumn.DisplayMemberBinding>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

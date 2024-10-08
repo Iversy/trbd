@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -23,6 +24,7 @@ namespace trbd
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void On_Save_Button_Click(object sender, RoutedEventArgs e)
@@ -47,13 +49,61 @@ namespace trbd
 
         private void On_New_Button_Click(object sender, RoutedEventArgs e)
         {
+            var tab = Nikita.SelectedIndex;
+            var table = app.stupid_data.Tables[tab];
+            var grid = new ListView();
+            if (tab == 0)
+            {
+                grid = MaterialGrid;
+            }
+            else if (tab == 1)
+            {
+                grid = UsageGrid;
 
+            }
+            List<string> cols = new List<string>();
+            if (grid.View is GridView gridView)
+            {
+                foreach (var col in gridView.Columns)
+                {
+                    cols.Add(col.Header.ToString());
+                }
+            }
+            var form = new EditForm(cols);
+            form.ShowDialog(table);
         }
         private void On_Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-            var form = new EditForm();
-            var table = app.stupid_data.Tables[Nikita.SelectedIndex];
-            form.ShowDialog(table, table.Rows.Count-1);
+            var tab = Nikita.SelectedIndex;
+            var table = app.stupid_data.Tables[tab];
+            int n_row = -1;
+            var grid = new ListView();
+            if (tab == 0)
+            {
+                grid = MaterialGrid;
+            }
+            else if (tab == 1)
+            {
+                grid = UsageGrid;
+
+            }
+            n_row = grid.SelectedIndex;
+            List<string> cols = new List<string>();
+            if (grid.View is GridView gridView)
+            {
+                foreach(var col in gridView.Columns)
+                {
+                    cols.Add(col.Header.ToString());
+                }
+            }
+            var form = new EditForm(cols);
+            if (n_row == -1)
+            {
+                form.ShowDialog(table, table.Rows.Count-1);
+                return;
+            }
+                form.ShowDialog(table, n_row);
+
         }
     }
 }
