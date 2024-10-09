@@ -24,11 +24,20 @@ namespace trbd
         DataTable table;
         int n_row;
         DataRow row;
+        int tab;
 
         App app = (App)Application.Current;
 
-        public EditForm(List<string> cols)
+        public EditForm(List<string> cols, int tab)
         {
+            this.tab = tab;
+            if (tab == 0)
+            {
+                this.Title = "Материалы";
+            } else if (tab == 1)
+            {
+                this.Title = "Использование";
+            }
             InitializeComponent();
             first.Content = cols[0];
             second.Content = cols[1];
@@ -44,8 +53,41 @@ namespace trbd
         }
         private void save_data()
         {
-            // TODO: VALIDATOR
-            
+            if (tab == 1) 
+            {
+                if (DateTime.TryParse(hst.Text, out DateTime dateValue))
+                {
+                    if (dateValue > DateTime.Today)
+                    {
+                        MessageBox.Show("Дата не может быть позже сегодняшнего дня.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return; 
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Некорректный формат даты.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return; 
+                }
+            }
+            else if (tab == 0) 
+            {
+                if (int.TryParse(hst.Text, out int value))
+                {
+                    System.Diagnostics.Debug.Write(value.ToString());
+                    if (value < 0)
+                    {
+                        MessageBox.Show("Значение должно быть больше нуля.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return; 
+                    }
+                }
+                else
+                {
+                    System.Diagnostics.Debug.Write(value.ToString());
+                    System.Diagnostics.Debug.Write(hst.Text);
+                    MessageBox.Show("Некорректный формат значения.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return; 
+                }
+            }
             int i = 0;
             foreach (var input in Grid.Children.OfType<TextBox>())
                 row[i++] = input.Text;

@@ -51,9 +51,11 @@ namespace trbd
         private void On_New_Button_Click(object sender, RoutedEventArgs e)
         {
             var tab = Nikita.SelectedIndex;
-            if (tab == null)
+            if (app.stupid_data == null)
             {
                 app.on_load_error("Нет данных", "Пожалуйста загрузите данные.", new System.NullReferenceException());
+                return;
+
             }
             var table = app.stupid_data.Tables[tab];
             var grid = new ListView();
@@ -74,7 +76,7 @@ namespace trbd
                     cols.Add(col.Header.ToString());
                 }
             }
-            var form = new EditForm(cols);
+            var form = new EditForm(cols, tab);
             form.ShowDialog(table);
         }
         private void On_Edit_Button_Click(object sender, RoutedEventArgs e)
@@ -83,6 +85,7 @@ namespace trbd
             if (app.stupid_data == null)
             {
                 app.on_load_error("Нет данных", "Пожалуйста загрузите данные.", new System.NullReferenceException());
+                return;
             }
             var table = app.stupid_data.Tables[tab];
             int n_row = -1;
@@ -105,14 +108,15 @@ namespace trbd
                     cols.Add(col.Header.ToString());
                 }
             }
-            var form = new EditForm(cols);
-            if (n_row == -1 && table.Rows.Count != 0)
+            var form = new EditForm(cols, tab);
+            if (n_row == -1 && table.Rows.Count > 0)
             {
                 n_row = table.Rows.Count - 1;
             }
             else
             {
                 app.on_load_error("Нет данных", "Пожалуйста добавьте данные.", new System.NullReferenceException());
+                return;
 
             }
                 form.ShowDialog(table, n_row);

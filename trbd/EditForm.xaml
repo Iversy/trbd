@@ -14,7 +14,7 @@
         <TextBox HorizontalAlignment="Left" Margin="239,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" DataContext="{Binding Path=ID}"/>
         <TextBox HorizontalAlignment="Left" Margin="239,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="239,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="239,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="hst" HorizontalAlignment="Left" Margin="239,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
         <Button Content="Ок" HorizontalAlignment="Left" Margin="283,251,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="320,251,0,0" VerticalAlignment="Top" Click="Button_Click_Cancel"/>
