@@ -13,16 +13,16 @@
         <local:DateFormatConverter x:Key="DateFormatConverter"/>
     </Window.Resources>
     <Grid>
-        <Button Content="Save data" HorizontalAlignment="Right" Margin="0,0,5,5"   VerticalAlignment="Bottom" Click="On_Save_Button_Click" Height="20" Width="60"/>
-        <Button Content="Load data" HorizontalAlignment="Right" Margin="0,0,5,30"  VerticalAlignment="Bottom" Click="On_Load_Button_Click" Height="20" Width="60"/>
-        <Button Content="New row"   HorizontalAlignment="Right" Margin="0,0,70,30" VerticalAlignment="Bottom" Click="On_New_Button_Click"  Height="20" Width="60"/>
-        <Button Content="Edit row"  HorizontalAlignment="Right" Margin="0,0,70,5"  VerticalAlignment="Bottom" Click="On_Edit_Button_Click" Height="20" Width="60"/>
-        <Button Content="Delete"  HorizontalAlignment="Right" Margin="0,0,135,5"  VerticalAlignment="Bottom" Click="On_Delete_Button_Click" Height="45" Width="60" RenderTransformOrigin="0.487,0.585"/>
-        <Button Content="Open File"  HorizontalAlignment="Right" Margin="0,0,709,15"  VerticalAlignment="Bottom" Click="btnOpenFile_Click" Height="25" Width="70" RenderTransformOrigin="0.487,0.585"/>
+        <Button Content="Сохранить" HorizontalAlignment="Right" Margin="0,0,14,5"   VerticalAlignment="Bottom" Click="On_Save_Button_Click" Height="20" Width="64"/>
+        <Button Content="Подгрузить" HorizontalAlignment="Right" Margin="0,0,14,30"  VerticalAlignment="Bottom" Click="On_Load_Button_Click" Height="20" Width="64"/>
+        <Button Content="Создать"   HorizontalAlignment="Right" Margin="0,0,83,30" VerticalAlignment="Bottom" Click="On_New_Button_Click"  Height="20" Width="64"/>
+        <Button Content="Изменить"  HorizontalAlignment="Right" Margin="0,0,83,5"  VerticalAlignment="Bottom" Click="On_Edit_Button_Click" Height="20" Width="64"/>
+        <Button Content="Удалить"  HorizontalAlignment="Right" Margin="0,0,152,5"  VerticalAlignment="Bottom" Click="On_Delete_Button_Click" Height="45" Width="60" RenderTransformOrigin="0.487,0.585"/>
+        <Button Content="Открыть файл"  HorizontalAlignment="Right" Margin="0,0,692,12"  VerticalAlignment="Bottom" Click="btnOpenFile_Click" Height="30" Width="87" RenderTransformOrigin="0.487,0.585"/>
         <TextBox Name="txtFilePath" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,0,217,15"  VerticalAlignment="Bottom"  Height="25" Width="470" RenderTransformOrigin="0.487,0.585"/>
 
         <TabControl x:Name="Nikita" Margin="0,0,0,65">
-            <TabItem Header="TabItem">
+            <TabItem Header="Материалы">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0*"/>
@@ -40,7 +40,7 @@
                     </ListView>
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="Использование">
                 <Grid Background="#FFE5E5E5">
                     <ListView x:Name="UsageGrid">
                         <ListView.View>
