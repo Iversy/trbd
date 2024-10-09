@@ -27,7 +27,7 @@ namespace trbd
             stupid_data = new StupidDataSet();
             try
             {
-                stupid_data.ReadXml("./stupid_data.xml");
+                stupid_data.ReadXml(file_path);
             }
             catch (FileNotFoundException e)
             {
@@ -36,6 +36,10 @@ namespace trbd
             catch (System.Data.ConstraintException e)
             {
                 this.on_load_error("Файл битый", "Я не могу прочитать дазу банных, файл битый.", e);
+            }
+            catch (System.Xml.XmlException e)
+            {
+                this.on_load_error("Неправильный формат", "Поддерживаемые файлы: .xml", e);
             }
         }
 

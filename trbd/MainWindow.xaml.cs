@@ -30,14 +30,33 @@ namespace trbd
 
         private void On_Save_Button_Click(object sender, RoutedEventArgs e)
         {
-            try
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "All Files (*.*)|*.*";
+            bool? result = saveFileDialog.ShowDialog();
+
+            if (result == true)
             {
-                app.stupid_data.WriteXml("./stupid_data.xml");
-            } 
-            catch (NullReferenceException exception)
-            {
-                app.on_load_error("Нет данных", "Отсутствуют данные для сохранения, загрузите данные, чтобы начать изменения.", exception);
+                string filePath = saveFileDialog.FileName;
+                if (filePath == null)
+                {
+                    filePath = "./stupid_data.xml";
+                }
+                try
+                {
+                    app.stupid_data.WriteXml(filePath);
+                }
+                catch (NullReferenceException exception)
+                {
+                    app.on_load_error("Нет данных", "Отсутствуют данные для сохранения, загрузите данные, чтобы начать изменения.", exception);
+                }
+                
             }
+            else
+            {
+                return;
+            }
+            MessageBox.Show("Файл сохранен");
+            
         }
 
         private void On_Load_Button_Click(object sender, RoutedEventArgs e)
@@ -146,13 +165,13 @@ namespace trbd
             //        cols.Add(col.Header.ToString());
             //    }
             //}
-            if (n_row == -1 && table.Rows.Count != 0)
-            {
-                n_row= table.Rows.Count-1;
-            }
-            else
+            if (table.Rows.Count == 0)
             {
                 return;
+            }
+            if (n_row == -1 && table.Rows.Count != 0)
+            {
+                n_row = table.Rows.Count - 1;
             }
             table.Rows[n_row].Delete();
 
