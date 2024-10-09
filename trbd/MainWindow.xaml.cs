@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -41,7 +42,7 @@ namespace trbd
 
         private void On_Load_Button_Click(object sender, RoutedEventArgs e)
         {
-            app.load_data();
+            app.load_data(txtFilePath.Text);
 
             MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"]!.DefaultView;
             UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"]!.DefaultView;
@@ -140,5 +141,21 @@ namespace trbd
             table.Rows[n_row].Delete();
 
         }
+
+        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "All Files (*.*)|*.*"; 
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                txtFilePath.Text = openFileDialog.FileName; 
+            }
+        }
+
+
+
+
+
     }
 }

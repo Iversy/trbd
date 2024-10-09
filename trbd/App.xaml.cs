@@ -18,8 +18,12 @@ namespace trbd
         {
         }
 
-        public void load_data()
+        public void load_data(string file_path)
         {
+            if (file_path == null)
+            {
+                file_path = "./stupid_data.xml";
+            }
             stupid_data = new StupidDataSet();
             try
             {
