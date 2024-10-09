@@ -60,32 +60,32 @@ namespace trbd
                     if (dateValue > DateTime.Today)
                     {
                         MessageBox.Show("Дата не может быть позже сегодняшнего дня.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return; 
+                        throw new Exception(); 
                     }
                 }
                 else
                 {
                     MessageBox.Show("Некорректный формат даты.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return; 
+                    throw new Exception(); 
                 }
             }
             else if (tab == 0) 
             {
-                if (int.TryParse(hst.Text, out int value))
+                if (decimal.TryParse(hst.Text, out decimal value))
                 {
-                    System.Diagnostics.Debug.Write(value.ToString());
+                    //System.Diagnostics.Debug.Write(value.ToString());
                     if (value < 0)
                     {
                         MessageBox.Show("Значение должно быть больше нуля.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return; 
+                        throw new Exception(); 
                     }
                 }
                 else
                 {
-                    System.Diagnostics.Debug.Write(value.ToString());
-                    System.Diagnostics.Debug.Write(hst.Text);
+                    //System.Diagnostics.Debug.Write(value.ToString());
+                    //System.Diagnostics.Debug.Write(hst.Text);
                     MessageBox.Show("Некорректный формат значения.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return; 
+                    throw new Exception();
                 }
             }
             int i = 0;
@@ -141,6 +141,9 @@ namespace trbd
             catch (System.ArgumentException e)
             {
                 app.on_load_error("Ошибка данных", "Введен неправильный тип данных или пустое значение", e);
+            }
+            catch (Exception e)
+            {
             }
         }
         private void Button_Click_Cancel(object sender, RoutedEventArgs _)

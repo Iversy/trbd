@@ -20,7 +20,7 @@ namespace trbd
 
         public void load_data(string file_path)
         {
-            if (file_path == null)
+            if (file_path == null || file_path == "")
             {
                 file_path = "./stupid_data.xml";
             }

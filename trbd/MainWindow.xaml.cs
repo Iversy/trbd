@@ -37,7 +37,7 @@ namespace trbd
             if (result == true)
             {
                 string filePath = saveFileDialog.FileName;
-                if (filePath == null)
+                if (filePath == null || filePath == "")
                 {
                     filePath = "./stupid_data.xml";
                 }
