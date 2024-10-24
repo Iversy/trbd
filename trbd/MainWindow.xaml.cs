@@ -1,18 +1,7 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Data;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace trbd
 {
@@ -25,7 +14,9 @@ namespace trbd
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"]?.DefaultView;
+            UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"]?.DefaultView;   
         }
 
         private void On_Save_Button_Click(object sender, RoutedEventArgs e)
@@ -33,67 +24,42 @@ namespace trbd
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "All Files (*.*)|*.*";
             bool? result = saveFileDialog.ShowDialog();
-
-            if (result == true)
-            {
-                string filePath = saveFileDialog.FileName;
-                if (filePath == null || filePath == "")
-                {
-                    filePath = "./stupid_data.xml";
-                }
-                try
-                {
-                    app.stupid_data.WriteXml(filePath);
-                }
-                catch (NullReferenceException exception)
-                {
-                    app.on_load_error("Нет данных", "Отсутствуют данные для сохранения, загрузите данные, чтобы начать изменения.", exception);
-                }
-                
-            }
-            else
-            {
+            if (result != true)
                 return;
+
+            string filePath = saveFileDialog.FileName;
+            if (filePath == String.Empty)
+            {
+                filePath = "./stupid_data.xml";
             }
+            app.stupid_data.WriteXml(filePath);
             MessageBox.Show("Файл сохранен");
-            
         }
 
         private void On_Load_Button_Click(object sender, RoutedEventArgs e)
         {
-            app.load_data(txtFilePath.Text);
-
-            MaterialGrid.ItemsSource = app.stupid_data.Tables["Material"]!.DefaultView;
-            UsageGrid.ItemsSource = app.stupid_data.Tables["Usage"]!.DefaultView;
+            app.LoadData(txtFilePath.Text);
         }
 
         private void On_New_Button_Click(object sender, RoutedEventArgs e)
         {
             var tab = Nikita.SelectedIndex;
-            if (app.stupid_data == null)
-            {
-                app.on_load_error("Нет данных", "Пожалуйста загрузите данные.", new System.NullReferenceException());
-                return;
-
-            }
             var table = app.stupid_data.Tables[tab];
-            var grid = new ListView();
-            if (tab == 0)
-            {
-                grid = MaterialGrid;
-            }
-            else if (tab == 1)
-            {
-                grid = UsageGrid;
 
+            ListView grid;
+            switch (tab)
+            {
+                case 0:
+                    grid = MaterialGrid;
+                    break;
+                default:
+                    grid = UsageGrid;
+                    break;
             }
             List<string> cols = new List<string>();
-            if (grid.View is GridView gridView)
+            foreach (DataColumn col in table.Columns)
             {
-                foreach (var col in gridView.Columns)
-                {
-                    cols.Add(col.Header.ToString());
-                }
+                cols.Add(col.Caption);
             }
             var form = new EditForm(cols, tab);
             form.ShowDialog(table);
@@ -103,7 +69,7 @@ namespace trbd
             var tab = Nikita.SelectedIndex;
             if (app.stupid_data == null)
             {
-                app.on_load_error("Нет данных", "Пожалуйста загрузите данные.", new System.NullReferenceException());
+                app.ShowError("Нет данных", "Пожалуйста загрузите данные.", new System.NullReferenceException());
                 return;
             }
             var table = app.stupid_data.Tables[tab];
@@ -130,7 +96,7 @@ namespace trbd
             var form = new EditForm(cols, tab);
             if (table.Rows.Count <= 0)
             {
-                app.on_load_error("Нет данных", "Пожалуйста добавьте данные.", new System.NullReferenceException());
+                app.ShowError("Нет данных", "Пожалуйста добавьте данные.", new System.NullReferenceException());
                 return;
 
             }

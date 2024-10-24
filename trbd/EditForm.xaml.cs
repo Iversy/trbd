@@ -132,15 +132,15 @@ namespace trbd
             }
             catch (System.Data.ConstraintException e)
             {
-                app.on_load_error("Ошибка данных", "Введены неверные данные", e);
+                app.ShowError("Ошибка данных", "Введены неверные данные", e);
             }
             catch (System.Data.InvalidConstraintException e)
             {
-                app.on_load_error("Ошибка данных", "Введены неверные данные", e);
+                app.ShowError("Ошибка данных", "Введены неверные данные", e);
             }
             catch (System.ArgumentException e)
             {
-                app.on_load_error("Ошибка данных", "Введен неправильный тип данных или пустое значение", e);
+                app.ShowError("Ошибка данных", "Введен неправильный тип данных или пустое значение", e);
             }
             catch (Exception e)
             {
