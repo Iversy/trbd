@@ -808,7 +808,7 @@ namespace trbd {
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
                 this.columnMaterial_ID.AllowDBNull = false;
-                this.columnDate.DateTimeMode = global::System.Data.DataSetDateTime.Local;
+                this.columnDate.DateTimeMode = global::System.Data.DataSetDateTime.Utc;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

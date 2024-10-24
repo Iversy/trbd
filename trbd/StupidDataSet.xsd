@@ -28,7 +28,7 @@
               <xs:element name="ID" msdata:AutoIncrement="true" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" />
               <xs:element name="Material_ID" msprop:Generator_ColumnPropNameInTable="Material_IDColumn" msprop:Generator_ColumnPropNameInRow="Material_ID" msprop:Generator_UserColumnName="Material_ID" msprop:Generator_ColumnVarNameInTable="columnMaterial_ID" type="xs:int" />
               <xs:element name="Count" msprop:Generator_ColumnPropNameInTable="CountColumn" msprop:Generator_ColumnPropNameInRow="Count" msprop:Generator_UserColumnName="Count" msprop:Generator_ColumnVarNameInTable="columnCount" type="xs:int" minOccurs="0" />
-              <xs:element name="Date" msdata:DateTimeMode="Local" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_UserColumnName="Date" msprop:Generator_ColumnVarNameInTable="columnDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Date" msdata:DateTimeMode="Utc" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_UserColumnName="Date" msprop:Generator_ColumnVarNameInTable="columnDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
