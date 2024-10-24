@@ -41,106 +41,75 @@ namespace trbd
             app.LoadData(txtFilePath.Text);
         }
 
-        private void On_New_Button_Click(object sender, RoutedEventArgs e)
+        private ListView get_selected_grid()
+        {
+            switch (Nikita.SelectedIndex)
+            {
+                case 0:
+                    return MaterialGrid;
+                default:
+                    return UsageGrid;
+            }
+        }
+
+        private List<string> get_captions()
         {
             var tab = Nikita.SelectedIndex;
             var table = app.stupid_data.Tables[tab];
 
-            ListView grid;
-            switch (tab)
-            {
-                case 0:
-                    grid = MaterialGrid;
-                    break;
-                default:
-                    grid = UsageGrid;
-                    break;
-            }
             List<string> cols = new List<string>();
             foreach (DataColumn col in table.Columns)
             {
                 cols.Add(col.Caption);
             }
-            var form = new EditForm(cols, tab);
+            return cols;
+        }
+
+        private void On_New_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var tab = Nikita.SelectedIndex;
+            var table = app.stupid_data.Tables[tab];
+
+            var form = new EditForm(get_captions(), tab);
             form.ShowDialog(table);
         }
         private void On_Edit_Button_Click(object sender, RoutedEventArgs e)
         {
             var tab = Nikita.SelectedIndex;
-            if (app.stupid_data == null)
-            {
-                app.ShowError("Нет данных", "Пожалуйста загрузите данные.", new System.NullReferenceException());
-                return;
-            }
             var table = app.stupid_data.Tables[tab];
-            int n_row = -1;
-            var grid = new ListView();
-            if (tab == 0)
-            {
-                grid = MaterialGrid;
-            }
-            else if (tab == 1)
-            {
-                grid = UsageGrid;
-
-            }
-            n_row = grid.SelectedIndex;
-            List<string> cols = new List<string>();
-            if (grid.View is GridView gridView)
-            {
-                foreach(var col in gridView.Columns)
-                {
-                    cols.Add(col.Header.ToString());
-                }
-            }
-            var form = new EditForm(cols, tab);
-            if (table.Rows.Count <= 0)
-            {
-                app.ShowError("Нет данных", "Пожалуйста добавьте данные.", new System.NullReferenceException());
-                return;
-
-            }
+            
+            ListView grid = get_selected_grid();
+            int n_row = grid.SelectedIndex;
             if (n_row == -1)
             {
-                n_row = table.Rows.Count - 1;
+                n_row += table.Rows.Count;
             }
+            var form = new EditForm(get_captions(), tab);
+            if (n_row == -1)
+            {
+                form.ShowDialog(table);
+            } else
+            {
                 form.ShowDialog(table, n_row);
-
+            }
         }
         private void On_Delete_Button_Click(object sender, RoutedEventArgs e)
         {
+            if (!app.ShowAsk("Подтвердите удаление", "Вы уверены что хотите удалить данные? Это действие будет невозможно отменить! Ваши данные исчезнут насовем и навегда!"))
+                return;
             var tab = Nikita.SelectedIndex;
             var table = app.stupid_data.Tables[tab];
-            int n_row = -1;
-            var grid = new ListView();
-            if (tab == 0)
-            {
-                grid = MaterialGrid;
-            }
-            else if (tab == 1)
-            {
-                grid = UsageGrid;
-
-            }
-            n_row = grid.SelectedIndex;
-            //List<string> cols = new List<string>();
-            //if (grid.View is GridView gridView)
-            //{
-            //    foreach (var col in gridView.Columns)
-            //    {
-            //        cols.Add(col.Header.ToString());
-            //    }
-            //}
+            var grid = get_selected_grid();
+            int n_row = grid.SelectedIndex;
             if (table.Rows.Count == 0)
             {
                 return;
             }
-            if (n_row == -1 && table.Rows.Count != 0)
+            if (n_row == -1)
             {
-                n_row = table.Rows.Count - 1;
+                n_row += table.Rows.Count;
             }
             table.Rows[n_row].Delete();
-
         }
 
         private void btnOpenFile_Click(object sender, RoutedEventArgs e)
@@ -153,10 +122,5 @@ namespace trbd
                 txtFilePath.Text = openFileDialog.FileName; 
             }
         }
-
-
-
-
-
     }
 }

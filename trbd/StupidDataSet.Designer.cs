@@ -501,6 +501,10 @@ namespace trbd {
                 this.columnID.AutoIncrement = true;
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
+                this.columnID.Caption = "Код";
+                this.columnName.Caption = "Название";
+                this.columnUnits.Caption = "Еденицы измерения";
+                this.columnPrice.Caption = "Цена";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -807,7 +811,11 @@ namespace trbd {
                 this.columnID.AutoIncrement = true;
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
+                this.columnID.Caption = "Код";
                 this.columnMaterial_ID.AllowDBNull = false;
+                this.columnMaterial_ID.Caption = "Код материала";
+                this.columnCount.Caption = "Количество";
+                this.columnDate.Caption = "Дата";
                 this.columnDate.DateTimeMode = global::System.Data.DataSetDateTime.Utc;
             }
             
