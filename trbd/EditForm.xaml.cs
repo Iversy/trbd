@@ -50,22 +50,32 @@ namespace trbd
             int i = 0;
             foreach (var input in Grid.Children.OfType<TextBox>())
                 input.Text = row[i++].ToString();
+            if (this.tab == 1)
+            {
+                if (row[3] is DBNull)
+                {
+                    datepicker.SelectedDate = DateTime.Today;
+                }else
+                {
+                    datepicker.SelectedDate = (DateTime)row[3];
+                }
+                datepicker.Visibility = Visibility.Visible;
+                hst.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                datepicker.Visibility = Visibility.Hidden;
+                hst.Visibility = Visibility.Visible;
+            }
         }
         private void save_data()
         {
             if (tab == 1) 
             {
-                if (DateTime.TryParse(hst.Text, out DateTime dateValue))
+                DateTime? dateValue = datepicker.SelectedDate;
+                if (dateValue > DateTime.Today)
                 {
-                    if (dateValue > DateTime.Today)
-                    {
-                        MessageBox.Show("Дата не может быть позже сегодняшнего дня.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
-                        throw new Exception(); 
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Некорректный формат даты.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Дата не может быть позже сегодняшнего дня.", "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
                     throw new Exception(); 
                 }
             }
@@ -91,6 +101,10 @@ namespace trbd
             int i = 0;
             foreach (var input in Grid.Children.OfType<TextBox>())
                 row[i++] = input.Text;
+            if (tab == 1)
+            {
+                row[3] = datepicker.Text;
+            }
             try
             {
                 table.Rows.Add(row);
