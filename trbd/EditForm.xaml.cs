@@ -45,25 +45,46 @@ namespace trbd
             fourth.Content = cols[3];
         }
 
+        private List<string> ref_names()
+        {
+            List<string> oleg = new();
+            foreach (DataRow row in app.stupid_data.Tables[0].Rows)
+            {
+                oleg.Add($"{row[0]}, {row[1]}");
+            }
+            return oleg;
+        }
+
+        private int get_index_by_id(int id)
+        {
+            foreach (string vova in ref_names())
+                if (vova.Split(",")[0] == id.ToString())
+                    return ref_names().IndexOf(vova);
+            return -1;
+        }
+
         private void load_data()
         {
-            int i = 0;
-            foreach (var input in Grid.Children.OfType<TextBox>())
-                input.Text = row[i++].ToString();
+            id_box.Text = row[0].ToString();
+            units.Text = row[2].ToString();
             if (this.tab == 1)
             {
-                if (row[3] is DBNull)
-                {
-                    datepicker.SelectedDate = DateTime.Today;
-                }else
-                {
-                    datepicker.SelectedDate = (DateTime)row[3];
-                }
+                name.Visibility = Visibility.Hidden;
+                ref_combo.Visibility = Visibility.Visible;
+                ref_combo.ItemsSource = ref_names();
+                ref_combo.SelectedIndex = row[1] is DBNull ? -1 : get_index_by_id((int)row[1]);
+
+                datepicker.SelectedDate = row[3] is DBNull ? DateTime.Today : (DateTime)row[3];
                 datepicker.Visibility = Visibility.Visible;
                 hst.Visibility = Visibility.Hidden;
             }
             else
             {
+                name.Visibility = Visibility.Visible;
+                ref_combo.Visibility = Visibility.Hidden;
+                name.Text = row[1].ToString();
+
+                hst.Text = row[3].ToString();
                 datepicker.Visibility = Visibility.Hidden;
                 hst.Visibility = Visibility.Visible;
             }
@@ -98,13 +119,19 @@ namespace trbd
                     throw new Exception();
                 }
             }
-            int i = 0;
-            foreach (var input in Grid.Children.OfType<TextBox>())
-                row[i++] = input.Text;
+
             if (tab == 1)
             {
+                row[1] = ref_combo.SelectedItem.ToString().Split(",")[0];
+                //row[1] = ref_combo.SelectedIndex+1;
                 row[3] = datepicker.Text;
             }
+            else
+            {
+                row[1] = name.Text;
+                row[3] = hst.Text;
+            }
+            row[2] = units.Text;
             try
             {
                 table.Rows.Add(row);

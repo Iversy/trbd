@@ -11,9 +11,16 @@
         <Label x:Name="second" Content="Название" HorizontalAlignment="Left" Margin="95,69,0,0" VerticalAlignment="Top"/>
         <Label x:Name="third" Content="Еденицы измерения" HorizontalAlignment="Left" Margin="95,100,0,0" VerticalAlignment="Top"/>
         <Label x:Name="fourth" Content="Цена" HorizontalAlignment="Left" Margin="95,131,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="239,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" DataContext="{Binding Path=ID}"/>
-        <TextBox HorizontalAlignment="Left" Margin="239,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="239,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        
+        <TextBox x:Name="id_box" HorizontalAlignment="Left" Margin="239,38,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                 IsEnabled="False"/>
+        
+        <TextBox x:Name="name" HorizontalAlignment="Left" Margin="239,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="ref_combo" HorizontalAlignment="Left" Margin="239,69,0,0" VerticalAlignment="Top" Width="120"/>
+        
+        <TextBox x:Name="units" HorizontalAlignment="Left" Margin="239,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        
         <TextBox x:Name="hst" HorizontalAlignment="Left" Margin="239,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="datepicker" HorizontalAlignment="Left" Margin="239,131,0,0" VerticalAlignment="Top" Width="120"/>
 
