@@ -5,26 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:trbd"
         mc:Ignorable="d"
-        Title="EditForm" Height="450" Width="800">
-    <Grid x:Name="Grid">
-        <Label x:Name="first" Content="Код" HorizontalAlignment="Left" Margin="95,38,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="second" Content="Название" HorizontalAlignment="Left" Margin="95,69,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="third" Content="Еденицы измерения" HorizontalAlignment="Left" Margin="95,100,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="fourth" Content="Цена" HorizontalAlignment="Left" Margin="95,131,0,0" VerticalAlignment="Top"/>
-        
-        <TextBox x:Name="id_box" HorizontalAlignment="Left" Margin="239,38,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
-                 IsEnabled="False"/>
-        
-        <TextBox x:Name="name" HorizontalAlignment="Left" Margin="239,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="ref_combo" HorizontalAlignment="Left" Margin="239,69,0,0" VerticalAlignment="Top" Width="120"/>
-        
-        <TextBox x:Name="units" HorizontalAlignment="Left" Margin="239,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        
-        <TextBox x:Name="hst" HorizontalAlignment="Left" Margin="239,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="datepicker" HorizontalAlignment="Left" Margin="239,131,0,0" VerticalAlignment="Top" Width="120"/>
+        Title="EditForm" Height="450" Width="800" MinWidth="300" MinHeight="200">
+    <Grid x:Name="Grid" MaxWidth="300" MaxHeight="200">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Label x:Name="first" Content="Код" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="second" Content="Название" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label x:Name="third" Content="Еденицы измерения" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2"/>
+        <Label x:Name="fourth" Content="Цена" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3"/>
 
-        <Button Content="Ок" HorizontalAlignment="Left" Margin="283,251,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="320,251,0,0" VerticalAlignment="Top" Click="Button_Click_Cancel"/>
+        <TextBox x:Name="id_box" HorizontalAlignment="Left" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                 IsEnabled="False" Grid.Column="1"/>
+
+        <TextBox x:Name="name" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="1"/>
+        <ComboBox x:Name="ref_combo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="1"/>
+
+        <TextBox x:Name="units" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
+
+        <TextBox x:Name="hst" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="1"/>
+        <DatePicker x:Name="datepicker" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="1"/>
+
+        <Button Content="Ок" VerticalAlignment="Top" Click="Button_Click" Grid.Row="4" MinWidth="50" HorizontalAlignment="Right" Width="50" Margin="0,0,20,0"/>
+        <Button Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_Cancel" Grid.Row="4" MinWidth="50" Grid.Column="1"/>
     </Grid>
 </Window>
