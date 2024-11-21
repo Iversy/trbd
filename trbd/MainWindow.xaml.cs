@@ -85,33 +85,28 @@ namespace trbd
             int n_row = grid.SelectedIndex;
             if (n_row == -1)
             {
-                n_row += table.Rows.Count;
+                app.ShowError("Выбрать поле необходимо сперва", "Не можно редактировать строку покуда строка никакая не выбрана");
+                return;
             }
             var form = new EditForm(get_captions(), tab);
-            if (n_row == -1)
-            {
-                form.ShowDialog(table);
-            } else
-            {
-                form.ShowDialog(table, n_row);
-            }
+            form.ShowDialog(table, n_row);
         }
         private void On_Delete_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!app.ShowAsk("Подтвердите удаление", "Вы уверены что хотите удалить данные? Это действие будет невозможно отменить! Ваши данные исчезнут насовем и навегда!"))
-                return;
             var tab = Nikita.SelectedIndex;
             var table = app.stupid_data.Tables[tab];
             var grid = get_selected_grid();
             int n_row = grid.SelectedIndex;
-            if (table.Rows.Count == 0)
-            {
+            if (table.Rows.Count == 0) {
+                app.ShowError("Нет данных", "Довольно! Уже все удалил, нечего больше удалять.");
                 return;
             }
-            if (n_row == -1)
-            {
-                n_row += table.Rows.Count;
+            if (n_row == -1) {
+                app.ShowError("Выбрать поле необходимо сперва", "Не можно удалять строку покуда строка никакая не выбрана");
+                return;
             }
+            if (!app.ShowAsk("Подтвердите удаление", "Вы уверены что хотите удалить данные? Это действие будет невозможно отменить! Ваши данные исчезнут насовем и навегда!"))
+                return;
             table.Rows[n_row].Delete();
         }
 
