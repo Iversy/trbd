@@ -9,7 +9,7 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinWidth="300" MinHeight="200">
     <Grid>
         <Button Content="Экспорт" HorizontalAlignment="Right" Margin="0,0,14,5"   VerticalAlignment="Bottom" Click="On_Save_Button_Click" Height="20" Width="64"/>
         <Button Content="Импорт" HorizontalAlignment="Right" Margin="0,0,14,30"  VerticalAlignment="Bottom" Click="On_Load_Button_Click" Height="20" Width="64"/>
