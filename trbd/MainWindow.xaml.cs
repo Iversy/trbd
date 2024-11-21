@@ -28,17 +28,20 @@ namespace trbd
                 return;
 
             string filePath = saveFileDialog.FileName;
-            if (filePath == String.Empty)
-            {
-                filePath = "./stupid_data.xml";
-            }
             app.stupid_data.WriteXml(filePath);
             MessageBox.Show("Файл сохранен");
         }
 
         private void On_Load_Button_Click(object sender, RoutedEventArgs e)
         {
-            app.LoadData(txtFilePath.Text);
+            var FileDialog = new OpenFileDialog();
+            FileDialog.Filter = "All Files (*.*)|*.*";
+            bool? result = FileDialog.ShowDialog();
+            if (result != true)
+                return;
+
+            string filePath = FileDialog.FileName;
+            app.LoadData(filePath);
         }
 
         private ListView get_selected_grid()
@@ -112,15 +115,5 @@ namespace trbd
             table.Rows[n_row].Delete();
         }
 
-        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "All Files (*.*)|*.*"; 
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                txtFilePath.Text = openFileDialog.FileName; 
-            }
-        }
     }
 }

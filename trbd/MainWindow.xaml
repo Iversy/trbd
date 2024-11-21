@@ -11,13 +11,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Сохранить" HorizontalAlignment="Right" Margin="0,0,14,5"   VerticalAlignment="Bottom" Click="On_Save_Button_Click" Height="20" Width="64"/>
-        <Button Content="Подгрузить" HorizontalAlignment="Right" Margin="0,0,14,30"  VerticalAlignment="Bottom" Click="On_Load_Button_Click" Height="20" Width="64"/>
+        <Button Content="Экспорт" HorizontalAlignment="Right" Margin="0,0,14,5"   VerticalAlignment="Bottom" Click="On_Save_Button_Click" Height="20" Width="64"/>
+        <Button Content="Импорт" HorizontalAlignment="Right" Margin="0,0,14,30"  VerticalAlignment="Bottom" Click="On_Load_Button_Click" Height="20" Width="64"/>
         <Button Content="Создать"   HorizontalAlignment="Right" Margin="0,0,83,30" VerticalAlignment="Bottom" Click="On_New_Button_Click"  Height="20" Width="64"/>
         <Button Content="Изменить"  HorizontalAlignment="Right" Margin="0,0,83,5"  VerticalAlignment="Bottom" Click="On_Edit_Button_Click" Height="20" Width="64"/>
         <Button Content="Удалить"  HorizontalAlignment="Right" Margin="0,0,152,5"  VerticalAlignment="Bottom" Click="On_Delete_Button_Click" Height="45" Width="60" RenderTransformOrigin="0.487,0.585"/>
-        <Button Content="Открыть файл"  HorizontalAlignment="Right" Margin="0,0,692,12"  VerticalAlignment="Bottom" Click="btnOpenFile_Click" Height="30" Width="87" RenderTransformOrigin="0.487,0.585"/>
-        <TextBox Name="txtFilePath" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,0,217,15"  VerticalAlignment="Bottom"  Height="25" Width="470" RenderTransformOrigin="0.487,0.585" Text="./stupid_data.xml"/>
 
         <TabControl x:Name="Nikita" Margin="0,0,0,65">
             <TabItem Header="Материалы">
